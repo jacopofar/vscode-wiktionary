@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     {
       provideHover: async (document, position, token) => {
         const hoverRange = document.getWordRangeAtPosition(position);
-        let word = document.getText(hoverRange);
+        let word: string = document.getText(hoverRange);
         const selection = vscode.window.activeTextEditor?.selection;
         if (selection){
           if(hoverRange) {
