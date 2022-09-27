@@ -20,7 +20,17 @@
         "command": "wiktionaryhelp.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "WiktionaryHelp",
+      "properties": {
+        "wiktionaryhelp.wiktionaryserverURL": {
+          "type": "string",
+          "default": "http://localhost:8090",
+          "description": "The base URL of the wiktionary server API"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

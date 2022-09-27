@@ -1,38 +1,48 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 const axios = require('axios').default;
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+
+export function formatDefinition(definitions: any): Array<vscode.MarkdownString> {
+  let retVal: vscode.MarkdownString[] = [];
+  definitions.forEach((def: any) => {
+    retVal = retVal.concat(def.senses.map((sense: any) => {
+      return new vscode.MarkdownString((sense.raw_glosses as Array<string>).join('\n*'));
+    }));
+  });
+  return retVal;
+}
+
+
 export function activate(context: vscode.ExtensionContext) {
-
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "wiktionaryhelp" is now active!');
-
-  // // The command has been defined in the package.json file
-  // // Now provide the implementation of the command with registerCommand
-  // // The commandId parameter must match the command field in package.json
-  // let disposable = vscode.commands.registerCommand('wiktionaryhelp.helloWorld', () => {
-  // 	// The code you place here will be executed every time your command is executed
-  // 	// Display a message box to the user
-  // 	vscode.window.showInformationMessage('Hello World from WiktionaryHelp!');
-  // });
-
-  // context.subscriptions.push(disposable);
 
   let hoverDisposable = vscode.languages.registerHoverProvider('markdown',
     {
       provideHover: async (document, position, token) => {
-        const word = document.getText(document.getWordRangeAtPosition(position));
+        const hoverRange = document.getWordRangeAtPosition(position);
+        let word = document.getText(hoverRange);
+        const selection = vscode.window.activeTextEditor?.selection;
+        if (selection){
+          if(hoverRange) {
+            if(!selection.intersection(hoverRange)?.isEmpty){
+              // selection may use multiple words and in that case overrides hovering
+              // but only if they overlap, because the user may select text
+              // somewhere else as part of the normal editing
+              word = document.getText(selection);
+            }
+          }
+        }
+        document.getText(selection);
+        const baseURL = vscode.workspace.getConfiguration().get('wiktionaryhelp.wiktionaryserverURL');
 
         try {
-          const response = await axios.get('http://127.0.0.1:8000/w/' + word);
-
-          console.log(response.data);
-          return new vscode.Hover(JSON.stringify(response.data));
+          const response = await axios.get(baseURL + '/w/' + word);
+          return new vscode.Hover(formatDefinition(response.data));
         } catch(error: any){
+          if (error.code === 'ECONNREFUSED'){
+            vscode.window.showInformationMessage(`Cannot connect to server at '${baseURL}'`);
+            return null;
+          }
+
           if (error.response.status !== 200){
             return new vscode.Hover(`Unknown word '${word}'`);
           }
@@ -44,5 +54,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(hoverDisposable);
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}
