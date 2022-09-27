@@ -21,17 +21,17 @@ export function activate(context: vscode.ExtensionContext) {
         const hoverRange = document.getWordRangeAtPosition(position);
         let word: string = document.getText(hoverRange);
         const selection = vscode.window.activeTextEditor?.selection;
-        if (selection){
+        // is there something selected?
+        if (selection && !selection.isEmpty){
+          // selection may use multiple words and in that case overrides hovering
+          // but only if they overlap, because the user may select text
+          // somewhere else as part of the normal editing
           if(hoverRange) {
             if(!selection.intersection(hoverRange)?.isEmpty){
-              // selection may use multiple words and in that case overrides hovering
-              // but only if they overlap, because the user may select text
-              // somewhere else as part of the normal editing
               word = document.getText(selection);
             }
           }
         }
-        document.getText(selection);
         const baseURL = vscode.workspace.getConfiguration().get('wiktionaryhelp.wiktionaryserverURL');
 
         try {
