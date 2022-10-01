@@ -6,6 +6,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.1.1] - 2022-10-01
+
+- Remove HelloWorld entrypoint
 ## [0.1.0] - 2022-09-27
 
 - Initial release
