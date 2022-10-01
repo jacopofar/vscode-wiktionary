@@ -3,6 +3,7 @@
   "displayName": "WiktionaryHelp",
   "description": "Query a local (wiktionary) dictionary server",
   "repository": "https://github.com/jacopofar/vscode-wiktionary",
+  "publisher": "JacopoFarina",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.71.0"
