@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         const baseURL = vscode.workspace.getConfiguration().get('wiktionaryhelp.wiktionaryserverURL');
 
         try {
-          const response = await axios.get(baseURL + '/w/' + word);
+          const response = await axios.get(baseURL + '/w/' + encodeURIComponent(word));
           return new vscode.Hover(formatDefinition(response.data));
         } catch(error: any){
           if (error.code === 'ECONNREFUSED'){

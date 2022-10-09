@@ -4,7 +4,7 @@
   "description": "Query a local (wiktionary) dictionary server",
   "repository": "https://github.com/jacopofar/vscode-wiktionary",
   "publisher": "JacopoFarina",
-  "version": "0.1.1",
+  "version": "0.1.２",
   "engines": {
     "vscode": "^1.71.0"
   },
