@@ -13,7 +13,9 @@ The server can be configured with many languages at the same time although the d
 Hovering the mouse over a word will show a popup with its definitions in English. When text is selected then hovering on it will show the definition of the selection instead, useful for substrings or terms composed of multiple tokens.
 ## Requirements
 
-You need to [set up a local Wiktionary server](https://github.com/jacopofar/wiktionary-http-server), which is simple as it requires only Python 3 and no further dependencies. You will also need to download the Wiktextract files corresponding to the language (or languages) you are interested to.
+You can use the multilingual server at https://yetanotherdictionary.eu
+
+Otherwise, you need to [set up a local Wiktionary server](https://github.com/jacopofar/wiktionary-http-server), which is simple as it requires only Python 3 and no further dependencies. You will also need to download the Wiktextract files corresponding to the language (or languages) you are interested to.
 
 ## Extension Settings
 
