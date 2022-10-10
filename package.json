@@ -4,7 +4,7 @@
   "description": "Query a local (wiktionary) dictionary server",
   "repository": "https://github.com/jacopofar/vscode-wiktionary",
   "publisher": "JacopoFarina",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "engines": {
     "vscode": "^1.71.0"
   },
@@ -21,7 +21,7 @@
       "properties": {
         "wiktionaryhelp.wiktionaryserverURL": {
           "type": "string",
-          "default": "http://localhost:8090",
+          "default": "https://yetanotherdictionary.eu",
           "description": "The base URL of the wiktionary server API"
         }
       }

@@ -5,6 +5,10 @@ All notable changes to the "wiktionaryhelp" extension will be documented in this
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
+
+## [0.2.1] - 2022-10-10
+
+- Use yetanotherdictionary.eu as default
 ## [0.2.0] - 2022-10-10
 
 - Show ISO language code

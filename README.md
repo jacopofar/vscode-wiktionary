@@ -1,10 +1,11 @@
 # wiktionaryhelp
 
-This is a VSCode extension that queries a local HTTP server showing word definitions when hovering the mouse over a word on Markdown files.
+This is a VSCode extension that queries an HTTP server showing word definitions when hovering the mouse over a word on Markdown files.
 
 ![Definitions of the word "mouse" provided by the extension](screenshot.png)
 
-To use it you need first to [set up a local Wiktionary server](https://github.com/jacopofar/wiktionary-http-server), the URL can be customized in order to share an instance.
+By default it uses the free and anonymous server at yetanotherdictionary.eu
+If you prefer you can also [set up a local Wiktionary server](https://github.com/jacopofar/wiktionary-http-server), and configure the URL in the settings.
 
 The server can be configured with many languages at the same time although the definitions are always in English.
 
@@ -36,6 +37,6 @@ Things that may be implemented in future versions:
 * meaningful tests
 * more details (synonyms, verb conjugations, etc.)
 * tokenization for languages that don't use spaces
-* an online dictionary server
+* an online dictionary server [x]
 * let users take notes on words
 * highlight words not in the dictionary
